@@ -1,0 +1,38 @@
+/* Single task styling */
+.note, .task {
+    background: #fffa91; /* sticky note yellow */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0.5rem;
+    width: 200px;
+    min-height: 100px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    position: relative; /* for delete button inside */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.note input, .note textarea {
+    width: 100%;
+    border: none;
+    background: transparent;
+    resize: none;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.note input:focus, .note textarea:focus {
+    outline: none;
+}
+
+.delete-task {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #900;
+}

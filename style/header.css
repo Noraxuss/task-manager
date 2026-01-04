@@ -1,0 +1,85 @@
+/* Top bar styles */ 
+.top-bar { 
+    position: sticky; 
+    top: 0; 
+    background: #fff; 
+    border-bottom: 2px solid #838181; 
+    z-index: 1000; 
+} 
+
+.top-bar-content { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0.75rem 1rem; 
+    overflow: hidden; 
+    max-height: 100px; 
+    transition: max-height 0.3s ease; 
+} 
+
+.top-bar.collapsed .top-bar-content { 
+    max-height: 0; 
+    padding: 0; 
+} 
+
+.top-bar .left { 
+    display: flex; 
+    gap: 1rem; 
+} 
+
+.top-bar .right {
+     display: flex; 
+     gap: 0.5rem; 
+} 
+
+.top-bar-handle { 
+    width: 60px; 
+    height: 24px; 
+    margin: 0 auto; 
+    background: #fff; 
+    border: 2px solid #ccc; 
+    border-top: none; 
+    border-radius: 0 0 12px 12px; 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+} 
+
+.arrow { 
+    font-size: 14px; 
+    transition: transform 0.3s ease; 
+}
+
+.top-bar.collapsed .arrow { 
+    transform: rotate(180deg); 
+}
+
+/* Header menu buttons */
+.menu-btn {
+    background: transparent;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 500;
+    color: #111;
+
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.menu-btn:hover {
+    background-color: #f2f2f2;
+}
+
+.menu-btn:active {
+    background-color: #e6e6e6;
+}
+
+.menu-btn:focus-visible {
+    outline: none;
+    background-color: #e6e6e6;
+}
+

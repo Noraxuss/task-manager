@@ -1,0 +1,10 @@
+/* Task scene container */
+#task-scene, #tasks-container {
+    padding: 1rem;
+    min-height: 400px;
+    display: flex;
+    flex-wrap: wrap; /* allows multiple tasks to wrap */
+    gap: 1rem;
+    background: #f5f5f5;
+    position: relative; /* for draggable/overlapping tasks later */
+}

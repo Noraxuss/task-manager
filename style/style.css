@@ -1,0 +1,14 @@
+/* Import modular styles */
+@import './header.css';
+@import './task-scene.css';
+@import './task.css';
+
+/* Reset and global styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+}
