@@ -1,85 +1,311 @@
-/* Top bar styles */ 
-.top-bar { 
-    position: sticky; 
-    top: 0; 
-    background: #fff; 
-    border-bottom: 2px solid #838181; 
-    z-index: 1000; 
-} 
+/* =========================
+   Header / Top Bar
+   ========================= */
 
-.top-bar-content { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 0.75rem 1rem; 
-    overflow: hidden; 
-    max-height: 100px; 
-    transition: max-height 0.3s ease; 
-} 
+.top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
-.top-bar.collapsed .top-bar-content { 
-    max-height: 0; 
-    padding: 0; 
-} 
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-main);
+}
 
-.top-bar .left { 
-    display: flex; 
-    gap: 1rem; 
-} 
+/* Main bar content */
+.top-bar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
+    padding: 0.75rem 1rem;
+    gap: 1rem;
+
+    overflow: visible;
+    max-height: 100px;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+/* Collapsed state */
+.top-bar.collapsed .top-bar-content {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+     overflow: hidden;
+}
+
+/* Sections */
+.top-bar .left,
 .top-bar .right {
-     display: flex; 
-     gap: 0.5rem; 
-} 
-
-.top-bar-handle { 
-    width: 60px; 
-    height: 24px; 
-    margin: 0 auto; 
-    background: #fff; 
-    border: 2px solid #ccc; 
-    border-top: none; 
-    border-radius: 0 0 12px 12px; 
-    cursor: pointer; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-} 
-
-.arrow { 
-    font-size: 14px; 
-    transition: transform 0.3s ease; 
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.top-bar.collapsed .arrow { 
-    transform: rotate(180deg); 
+/* Center handle container */
+.top-bar-handle {
+    width: 56px;
+    height: 24px;
+    margin: 0 auto;
+
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-main);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Header menu buttons */
+/* Arrow */
+.arrow {
+    font-size: 14px;
+    color: var(--text-muted);
+    transition: transform 0.3s ease;
+}
+
+.top-bar.collapsed .arrow {
+    transform: rotate(180deg);
+}
+
+/* =========================
+   Header Menu Buttons
+   ========================= */
+
 .menu-btn {
     background: transparent;
     border: none;
-    padding: 8px 12px;
+
+    padding: 6px 12px;
     border-radius: 8px;
 
     font-size: 14px;
     font-weight: 500;
-    color: #111;
+    color: var(--text-main);
 
     cursor: pointer;
-    transition: background-color 0.15s ease, color 0.15s ease;
+    transition: background-color 0.15s ease;
 }
 
 .menu-btn:hover {
-    background-color: #f2f2f2;
+    background-color: var(--btn-hover);
 }
 
 .menu-btn:active {
-    background-color: #e6e6e6;
+    background-color: var(--btn-hover);
 }
 
 .menu-btn:focus-visible {
     outline: none;
-    background-color: #e6e6e6;
+    background-color: var(--btn-hover);
 }
 
+#theme-toggle img {
+    transition: transform 0.2s ease;
+}
+
+#theme-toggle:active img {
+    transform: scale(0.9);
+}
+
+/* =========================
+   Dropdown Menu
+   ========================= */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: transparent;
+    border: none;
+
+    padding: 6px 12px;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-main);
+
+    cursor: pointer;
+}
+
+.dropbtn:hover {
+    background-color: var(--btn-hover);
+}
+
+/* Dropdown panel */
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    min-width: 180px;
+    padding: 0.5rem;
+
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-main);
+    border-radius: 10px;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    z-index: 2000;
+}
+
+/* Show on hover */
+.dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+/* Dropdown items */
+
+.icon-btn {
+    background: transparent;
+    border: none;
+
+    padding: 6px;
+    border-radius: 50%;
+
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    background: var(--btn-hover);
+}
+
+#theme-icon {
+    transition:
+        transform 0.35s ease,
+        opacity 0.2s ease;
+}
+
+[data-theme="dark"] #theme-icon {
+    transform: rotate(180deg) scale(1.05);
+}
+
+.theme-switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    padding: 6px 8px;
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.theme-switch:hover {
+    background: var(--btn-hover);
+}
+
+.theme-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    font-size: 14px;
+    color: var(--text-main);
+}
+
+.theme-label img {
+    transition: transform 0.35s ease;
+}
+
+[data-theme="dark"] .theme-label img {
+    transform: rotate(180deg);
+}
+
+.switch {
+    width: 40px;
+    height: 22px;
+    border-radius: 999px;
+
+    background: var(--border-main);
+    position: relative;
+
+    transition: background-color 0.25s ease;
+}
+
+.switch-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+
+    background: var(--bg-elevated);
+    position: absolute;
+    top: 2px;
+    left: 2px;
+
+    transition: transform 0.25s ease;
+}
+
+[data-theme="dark"] .switch {
+    background: var(--accent);
+}
+
+[data-theme="dark"] .switch-thumb {
+    transform: translateX(18px);
+}
+
+
+/* =========================
+   OLD Dropdown Menu - to be removed
+   ========================= */
+
+/*
+.dropbtn {
+    overflow: visible;
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+    overflow: visible;
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+    overflow: visible;
+    position: relative;
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    position: relative;
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+*/

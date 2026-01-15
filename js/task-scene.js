@@ -1,43 +1,64 @@
-import { t } from './i18n.js';
-import { addTaskDOM } from './task.js';
-
-let notes = [];
+let notes = JSON.parse(localStorage.getItem("notes")) || [];
 
 export function initTaskScene() {
-    const main = document.getElementById("main-content");
-    if (!main) return;
+    const addBtn = document.getElementById("addTask");
+    const scene = document.getElementById("task-scene");
 
-    main.innerHTML = `
-        <button id="add-task-btn">${t("add-note")}</button>
-        <div id="tasks-container"></div>
-    `;
+    if (!addBtn || !scene) return;
 
-    document.getElementById("add-task-btn").onclick = () => {
-        addTask();
-    };
-
-    renderTasks();
-}
-
-function addTask() {
-    notes.unshift({
-        id: Date.now().toString(),
-        title: "",
-        content: ""
+    addBtn.addEventListener("click", () => {
+        notes.push({ 
+            content: "",
+            color: "#fffb7d" // default yellow
+            });
+        saveAndRender();
     });
-    renderTasks();
+
+    renderTasksView(scene);
 }
 
-export function renderTasksView() {
-    renderTasks();
+function saveAndRender() {
+    localStorage.setItem("notes", JSON.stringify(notes));
+    renderTasksView(document.getElementById("task-scene"));
 }
 
-function renderTasks() {
-    const container = document.getElementById("tasks-container");
-    container.innerHTML = "";
+function renderTasksView(scene) {
+    // remove existing notes (not the button!)
+    scene.querySelectorAll(".note").forEach(n => n.remove());
 
-    for (const note of notes) {
-        const taskEl = addTaskDOM(note);
-        container.appendChild(taskEl);
-    }
+    notes.forEach((note, index) => {
+        const el = document.createElement("div");
+        el.className = "note";
+        el.style.backgroundColor = note.color;
+
+        const textarea = document.createElement("textarea");
+        textarea.value = note.content;
+        textarea.placeholder = "New task...";
+        textarea.addEventListener("input", e => {
+            notes[index].content = e.target.value;
+            localStorage.setItem("notes", JSON.stringify(notes));
+        });
+
+        const colorInput = document.createElement("input");
+        colorInput.type = "color";
+        colorInput.value = note.color;
+
+        colorInput.addEventListener("input", e => {
+        notes[index].color = e.target.value;
+            el.style.backgroundColor = e.target.value;
+            localStorage.setItem("notes", JSON.stringify(notes));
+        });
+
+        const del = document.createElement("button");
+        del.className = "delete-task";
+        del.textContent = "×";
+        del.addEventListener("click", () => {
+            notes.splice(index, 1);
+            saveAndRender();
+        });
+
+        el.append(textarea, colorInput, del);
+
+        scene.appendChild(el);
+    });
 }

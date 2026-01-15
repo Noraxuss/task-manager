@@ -8,7 +8,9 @@ async function loadTranslations() {
 }
 
 function t(key) {
-    return translations[lang][key] || translations.en[key] || key;
+    return translations[lang]?.[key]
+        || translations.en?.[key]
+        || key;
 }
 
 function setLang(newLang) {
@@ -16,4 +18,10 @@ function setLang(newLang) {
     document.documentElement.lang = lang;
 }
 
-export { loadTranslations, t, lang, setLang };
+function applyTranslations(root = document) {
+    root.querySelectorAll("[data-i18n]").forEach(el => {
+        el.innerText = t(el.dataset.i18n);
+    });
+}
+
+export { loadTranslations, t, lang, setLang, applyTranslations };

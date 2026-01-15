@@ -1,4 +1,39 @@
-<div class="task">
-    <textarea class="task-content" placeholder="New task..."></textarea>
-    <button class="delete-task">×</button>
+<div class="note" style="--note-color: #fffb7d">
+
+    <!-- menu -->
+    <div class="note-top-bar">
+
+        <!-- task title -->
+        <input class="note-title" placeholder="Task title..." />
+        
+        <!-- menu button -->
+         <div class="note-menu-button-container">
+            <button class="note-menu-btn" aria-label="Note options">
+                <img src="assets/ellipsis-vertical.svg" width="18" height="18" />
+            </button>
+
+            <div class="menu-menu" role="menu" >
+                <!-- color change button -->
+                <input type="color" class="note-color-picker" />
+
+                <!-- delete button -->
+                <button class="delete-task">
+                    Delete
+
+                    <img 
+                        id="delete-icon"
+                        src="assets/delete.svg"
+                        width="18"
+                        height="18"
+                    />
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task content / description -->
+    <textarea class="note-content" placeholder="New task..."></textarea>
+
 </div>
+
+
