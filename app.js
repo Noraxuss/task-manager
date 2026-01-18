@@ -4,6 +4,7 @@ import { loadTranslations } from './js/header-i18n.js';
 import { initHeader } from './js/header.js';
 import { initTaskScene } from './js/task-scene.js';
 import { initTheme, initThemeToggle } from './js/header-theme.js';
+import { loadTemplates } from './js/templates/template-loader.js';
 
 // Helper to load HTML into a container
 async function loadHTML(containerId, path) {
@@ -28,7 +29,7 @@ async function init() {
 
     await loadTranslations();
 
-    
+    await loadTemplates();    
 
     // 1️⃣ Load header HTML first, then initialize it
     await loadHTML('header-container', './components/header.html');

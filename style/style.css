@@ -2,6 +2,7 @@
 @import './header.css';
 @import './task-scene.css';
 @import './task.css';
+@import './tooltip.css';
 
 :root {
     --bg-main: #ffffff;
