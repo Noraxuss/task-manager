@@ -1,0 +1,12 @@
+{
+    "header.settingsDropDownButton": "Beállítások",
+    "header.taskButton": "Feladatok",
+    "header.themeLight": "Világos téma",
+    "header.themeDark": "Sötét téma",
+
+
+    "app-title": "Feladatok",
+    "tasks-btn": "Feladatok",
+    "add-note": "Új feladat",
+    "note-content-placeholder": "Írd ide a feladatot..."
+}

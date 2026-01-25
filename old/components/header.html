@@ -1,0 +1,57 @@
+<header class="top-bar" id="top-bar">
+    <nav class="top-bar-content" aria-label="Main navigation">
+
+        <!-- Left: primary actions -->
+        <div class="top-bar-left">
+            <button
+                id="tasks-btn"
+                class="menu-btn"
+                data-i18n="header.taskButton">
+            </button>
+
+            <div class="dropdown">
+                <button
+                    class="menu-btn dropbtn"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    data-i18n="header.settingsDropDownButton">
+                </button>
+
+                <div class="dropdown-content" role="menu">
+                    <div class="theme-switch" id="theme-toggle">
+                        <div class="theme-label">
+                            <img
+                                id="theme-icon"
+                                src="assets/moon.svg"
+                                alt=""
+                                width="18"
+                                height="18"
+                            />
+                            <span data-i18n="header.themeDark"></span>
+                        </div>
+
+                        <div class="switch">
+                            <div class="switch-thumb"></div>
+                        </div>
+                    </div>
+
+                    <select id="language-select" aria-label="Language">
+                        <option value="en">EN</option>
+                        <option value="hu">HU</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center: collapse handle -->
+        <div class="top-bar-middle">
+            <button
+                class="top-bar-handle"
+                id="top-bar-handle"
+                aria-label="Toggle header">
+                <span class="arrow">⌃</span>
+            </button>
+        </div>
+
+    </nav>
+</header>

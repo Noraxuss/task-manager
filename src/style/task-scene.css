@@ -1,0 +1,74 @@
+/* =========================
+   Task Scene
+   ========================= */
+
+#task-scene,
+#tasks-container {
+    padding: 1rem;
+    width: 100%;         /* full width */
+    min-height: 100vh;   /* at least full viewport height */
+    position: relative;     /* allows absolutely positioned tasks inside */
+    overflow: auto;         /* scroll only inside task scene if tasks go beyond */
+
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    background: var(--bg-surface);
+    color: var(--text-main);
+}
+
+/* Add Task Button */
+.addTask {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    width: 70px;
+    height: 70px;
+
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-main);
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+/* Pop effect on hover */
+.addTask:hover {
+    background: var(--bg-elevated-hover);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Press effect */
+.addTask:active {
+    transform: translateY(0) scale(0.95);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Sticky note SVG */
+.sticky-note-icon {
+    width: 28px;
+    height: 28px;
+    transition: transform 0.2s ease;
+}
+
+/* Slight rotate on hover for a playful effect */
+.addTask:hover .sticky-note-icon {
+    transform: rotate(-5deg);
+}
+
+.sticky-note-icon path:first-child {
+    fill: var(--sticky-note-yellow);
+}
+
+.sticky-note-icon path:last-child {
+    stroke: var(--text-main);
+}
