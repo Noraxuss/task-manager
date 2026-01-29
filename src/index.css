@@ -1,68 +1,67 @@
+/* Import modular styles */
+@import './style/app.css';
+@import './style/header.css';
+@import './style/board.css';
+@import './style/task.css';
+@import './style/tooltip.css';
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    --bg-main: #ffffff;
+    --bg-surface: #f5f5f5;
+    --bg-elevated: #ffffff;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+    --tooltip-bg: #ecece2;
+    --tooltip-text: #000000;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+
+    --text-main: #111111;
+    --text-muted: #555555;
+
+    --border-main: #cccccc;
+    --accent: #3ea6ff;
+
+    --btn-hover: rgba(0, 0, 0, 0.06);
+    --sticky-note-yellow: #fffb7d;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+:root[data-theme="dark"] {
+    --bg-main: #0f0f0f;
+    --bg-surface: #181818;
+    --bg-elevated: #202020;
+
+    --tooltip-bg: #424242;
+    --tooltip-text: #ffffff;
+
+    --shadow-color: rgba(0, 0, 0, 0.2);
+
+    --text-main: #eaeaea;
+    --text-muted: #aaaaaa;
+
+    --border-main: #303030;
+    --accent: #3ea6ff;
+
+    --btn-hover: rgba(255, 255, 255, 0.08);
+    --sticky-note-yellow: #fff176;
 }
-a:hover {
-  color: #535bf2;
+
+/* Reset and global styles */
+* {
+    box-sizing: border-box;
 }
 
 body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+}
+
+html, body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  background: var(--bg-main);
+  color: var(--text-main);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.app {
+    visibility: visible;
 }

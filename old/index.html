@@ -1,13 +1,28 @@
-<!doctype html>
-<html lang="en">
-  <head>
+<!DOCTYPE html>
+ <html lang="en" data-theme="light">
+<head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+    <!-- Preload Roboto font with variable weight and width -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap" rel="stylesheet">
+
+    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>task-manager</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="style/style.css" />
+</head>
+<body class="app">
+
+    <!-- Dynamic components -->
+    <div id="header-container"></div>
+    <div id="task-scene-container"></div>
+    
+
+    <script type="module" src="app.js"></script>
+
+
+</body>
 </html>

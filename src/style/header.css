@@ -122,6 +122,7 @@
 .dropbtn {
     background: transparent;
     border: none;
+    width: 100%;
 
     padding: 6px 12px;
     border-radius: 8px;
@@ -154,7 +155,7 @@
     border: 1px solid var(--border-main);
     border-radius: 10px;
 
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 24px var(--shadow-color);
     z-index: 2000;
 }
 
@@ -257,55 +258,54 @@
     transform: translateX(18px);
 }
 
-
-/* =========================
-   OLD Dropdown Menu - to be removed
-   ========================= */
-
 /*
-.dropbtn {
-    overflow: visible;
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-}
+Language selector items
+*/
 
-.dropdown {
-    overflow: visible;
+.dropright {
   position: relative;
   display: inline-block;
 }
 
-.dropdown-content {
-    overflow: visible;
-    position: relative;
-  display: none;
+.dropright-menu {
   position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  top: 50%;                  /* center vertically */
+  left: 100%;                /* to the right */
+  transform: translateY(-50%);
+  margin-left: 8px;
+
+  min-width: 80px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-main);
+  border-radius: 6px;
+  box-shadow: 0 6px 20px var(--shadow-color);
+
+  display: flex;
+  flex-direction: column;
+  padding: 4px 0;
+  z-index: 1000;
 }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+
+.dropright-item {
+  all: unset;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text-main);
 }
 
-.dropdown-content a:hover {
-    background-color: #ddd;
+.dropright-item:hover {
+  background: var(--btn-hover);
 }
 
-.dropdown:hover .dropdown-content {
-    position: relative;
-    display: block;
+.dropright-item .check {
+  margin-left: 12px;
+  color: var(--accent);
+  font-weight: bold;
 }
 
-.dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-}
-*/

@@ -4,26 +4,31 @@
 .note {
     display: flex;
     flex-direction: column; /* stack top, middle, bottom vertically */
-    width: 200px;            /* fixed width */
-    min-height: 150px;           /* base height; can grow if content added */
-    max-height: 500px;           /* limit max height */
+    width: 200px;           /* fixed width */
+    min-height: 150px;      /* base height; can grow if content added */
+    max-height: 500px;      /* limit max height */
     background: var(--note-color, var(--sticky-note-yellow));
     border-radius: 8px;
     padding: 0.3rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 6px var(--shadow-color);
     position: relative;      /* allows absolute-positioned children */
     overflow: visible;       /* allows menu to overflow note bounds */
     resize: auto;            /* note itself can be resized if needed */
     box-sizing: border-box;
-    transition:
-        top 0.2s ease,
-        left 0.2s ease,
-        width 0.2s ease,
-        height 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease; /* smooth movement */
+
+    /* Smooth transitions for move, resize, enlarge */
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease,
+                width 0.3s ease,
+                height 0.3s ease,
+                top 0.3s ease,
+                left 0.3s ease,
+                opacity 0.3s ease;
 }
 
+/* =========================
+   Textarea cursor styling
+   ========================= */
 /* CSS: optional, shows cursor not-editable */
 .note-title[readonly],
 .note-content[readonly] {
@@ -31,13 +36,12 @@
     opacity: 0.9;     /* slightly faded when readonly */
 }
 
-/* Optional: when focused, remove this style */
+/* Editable when enlarged */
 .note.enlarged .note-title,
 .note.enlarged .note-content {
     cursor: text;
     opacity: 1;
 }
-
 
 /* =========================
    Note Sections
@@ -87,6 +91,39 @@
     gap: 6px;
     align-items: center;
     margin-top: auto;        /* pushes bottom container to bottom of note */
+    overflow-x: auto;        /* allow horizontal scrolling */
+    padding-bottom: 2px;
+}
+
+.note-bottom-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.note-bottom-container::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.2);
+    border-radius: 3px;
+}
+
+/* Placeholder for spacing in horizontal scroll */
+.note-placeholder {
+    display: inline-block; 
+    flex-shrink: 0;
+    background: transparent;
+}
+
+/* Hide bottom controls when note is not enlarged */
+.note:not(.enlarged) .note-bottom-container {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+}
+
+/* Show bottom controls when enlarged */
+.note.enlarged .note-bottom-container {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 /* =========================
@@ -101,7 +138,7 @@
     border: 1px solid var(--border-main);
     border-radius: 8px;
     padding: 8px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 20px var(--shadow-color);
     display: none;            /* hidden by default */
     z-index: 10;              /* appear above everything else */
 }
@@ -114,21 +151,7 @@
 /* =========================
    Buttons (Formatting / Menu)
    ========================= */
-.note-function-btn {
-    background: transparent;
-    border: 1px solid transparent;
-    cursor: pointer;
-    opacity: 0.7;
-    border-radius: 6px;
-
-    /* Smooth hover / click animations */
-    transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease,
-        background-color 0.15s ease,
-        opacity 0.15s ease,
-        border-color 0.15s ease;
-}
+.note-function-btn,
 .note-menu-btn {
     background: transparent;
     border: 1px solid transparent;
@@ -148,7 +171,6 @@
 /* =========================
    Button Hover & Active States
    ========================= */
-/* Hover OR persistent active state for toggle buttons */
 .note-function-btn:hover,
 .note-menu-btn:hover,
 .note-function-btn.active,
@@ -157,16 +179,16 @@
     background-color: rgba(0, 0, 0, 0.05);
     border-color: var(--border-main);
     transform: scale(1.08);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 10px var(--shadow-color);
 }
 
-/* Ensure menu button stays highlighted when menu is open */
+/* Keep menu button highlighted when menu is open */
 .note.show-menu .note-menu-btn {
     opacity: 1;
     background-color: rgba(0, 0, 0, 0.05);
     border-color: var(--border-main);
     transform: scale(1.08);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 10px var(--shadow-color);
     display: block;
 }
 
@@ -175,7 +197,9 @@
     opacity: 1;
 }
 
-/* Overlay to dim background notes */
+/* =========================
+   Overlay to dim background notes
+   ========================= */
 .note-overlay {
     position: fixed;
     top: 0;
@@ -184,45 +208,35 @@
     height: 100vh;
     background: rgba(0,0,0,0.3);
     z-index: 50;
-    display: none;  /* show only when note is enlarged */
 }
 
-/* Enlarged note */
+/* =========================
+   Enlarged note
+   ========================= */
 .note.enlarged {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(1);
     width: 60vw;           /* can adjust width */
     max-height: 80vh;      /* leave space at bottom/top */
     height: auto;
     z-index: 100;          /* above overlay */
     box-shadow: 0 8px 20px rgba(0,0,0,0.4);
     overflow: auto;        /* scrollbar if content too long */
-    transition: all 0.3s ease; /* animate top, left, width, height */
+    transition: all 0.3s ease; /* animate all properties */
 }
 
-.note-bottom-container {
-    flex-shrink: 0;
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    margin-top: auto;
-    overflow-x: auto;       /* allow horizontal scrolling */
-    padding-bottom: 2px;
+/* =========================
+   Background notes fade when one is enlarged
+   ========================= */
+.board .note:not(.enlarged) {
+    transition: opacity 0.3s ease, pointer-events 0.3s ease;
+    opacity: 1;
+    pointer-events: auto;
 }
 
-.note-bottom-container::-webkit-scrollbar {
-    height: 6px;
-}
-
-.note-bottom-container::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.2);
-    border-radius: 3px;
-}
-
-.note-placeholder {
-    display: inline-block; 
-    flex-shrink: 0;
-    background: transparent;
+.board .note-overlay ~ .note:not(.enlarged) {
+    opacity: 0.4;      /* fade background notes */
+    pointer-events: none; /* prevent interaction */
 }
